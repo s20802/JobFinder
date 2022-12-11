@@ -1,0 +1,44 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+  <h2>Edit account</h2>
+  <form class="form">
+    <label for="username">Username: <span class="symbol-required">*</span></label>
+    <input type="text" name="username" id="username" value="john2000" required>
+    <span id="errorUsername"></span>
+
+    <label for="name">Name: <span class="symbol-required">*</span></label>
+    <input type="text" name="name" id="name" value="John" required>
+    <span id="errorName"></span>
+
+    <label for="surname">Surname: <span class="symbol-required">*</span></label>
+    <input type="text" name="surname" id="surname" value="Smith" required>
+    <span id="errorSurname"></span>
+
+    <label for="gender">Gender: <span class="symbol-required">*</span></label>
+    <select name="gender" id="gender">
+      <option selected>Male</option>
+      <option>Female</option>
+      <option>Other</option>
+    </select>
+    <span id="errorGender"></span>
+
+    <label for="password">Password: <span class="symbol-required">*</span></label>
+    <input type="text" name="password" id="password" value="*******" required>
+    <span id="error"></span>
+
+    <label for="email">E-mail: <span class="symbol-required">*</span></label>
+    <input type="text" name="email" id="email" value="johnjohn@mail.com" required>
+    <span id="errorEmail"></span>
+
+    <label for="date">Date Created: <span class="symbol-required">*</span></label>
+    <input type="date" name="date" id="date" value="2021-01-05" required>
+    <span id="errorDate"></span>
+
+    <div class="form-buttons">
+      <p id="errorSummary"></p>
+      <input type="submit" value="Add" class="form-button-submit">
+      <a href="views/pages/account/list.ejs" class="form-button-cancel">Cancel</a>
+    </div>
+  </form>
+</main>
+<%- include('../../fragments/footer.ejs') %>

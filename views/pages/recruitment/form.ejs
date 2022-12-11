@@ -1,0 +1,74 @@
+
+
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationRecruitmentForm.js"></script>
+    <h2><%= pageTitle%></h2>
+    <form class="form" method="post" action="<%= formAction%> "novalidate onsubmit="return validateForm();">
+
+        <input type="hidden" name="_id" value="<%= rec._id %>"/>
+
+        <label for="recUsername">Username: <span class="symbol-required">*</span></label>
+        <select name="recUsername" id="recUsername" required <%= (formMode === 'showDetails') ? 'disabled' : '' %>>
+            <option value="" selected>-- Select account --</option>
+            <% for (let i=0; i<allAccs.length; i++) {let acc = allAccs[i]; %>
+                <option value="<%= acc._id %>" label="<%= acc.username%> + '3123'"><%= (rec._id && acc._id.toString() === rec.account._id.toString()) ? 'selected' : ''%></option>
+            <% } %>
+        </select>
+        <span id="errorRecUsername" class="errors-text"></span>
+
+        <label for="companyRecName">Company Name: <span class="symbol-required">*</span></label>
+        <select name="companyRecName" id="companyRecName" required <%= (formMode === 'showDetails') ? 'disabled' : ''%>>
+            <option value="" selected>-- Select job offer --</option>
+            <% for (let i=0; i< allJobs.length; i++) {let job = allJobs[i]; %>
+            <option value="<%= job._id %>" label="<%= job.companyName%>">
+                <%= (rec._id && job._id.toString() === rec.jobOffer._id.toString()) ? 'selected' : ''%>
+            </option>
+            <% } %>
+        </select>
+        <span id="errorCompanyRecName" class="errors-text"></span>
+
+        <label for="status">Status:</label>
+        <input type="text" name="status" id="status" value="<%= rec.status %>"
+                <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
+        <span id="errorStatus" class="errors-text"></span>
+
+        <label for="dateOpened">Date Opened: <span class="symbol-required">*</span></label>
+        <input type="date" name="dateOpened" id="dateOpened" value="<%= rec.dateOpened %>"
+                <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
+        <span id="errorDateOpened" class="errors-text"></span>
+
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes" rows="5" cols="40" <%= (formMode === 'showDetails') ? 'disabled' : '' %>><%= rec.notes%></textarea>
+        <span id="errorNotes" class="errors-text"></span>
+
+        <% if (formMode !== 'showDetails') { %>
+            <div class="form-buttons">
+            </div>
+        <% } %>
+
+        <% if (formMode === 'showDetails') { %>
+            <div class="form-buttons">
+                <a href="/recruitments/edit/<%= rec._id %> " class="button-edit">Edit</a>
+            </div>
+        <% } %>
+        <div class="form-buttons">
+            <span class="errors-text" id="errorsSummary"></span>
+            <% if (formMode !== 'showDetails') { %>
+                <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
+                <a class="form-button-cancel" href="/recruitments">Cancel</a>
+            <% } else { %>
+                <a class="form-button-cancel" href="/recruitments">Return</a>
+            <% } %>
+        </div>
+        <!--    <div class="form-buttons">-->
+        <!--      <p id="errorSummary"></p>-->
+        <!--      <input type="submit" value="Add" class="form-button-submit">-->
+        <!--      <a href="/job-offers" class="form-button-cancel">Cancel</a>-->
+        <!--    </div>-->
+    </form>
+<!--    -->
+
+</main>
+<%- include('../../fragments/footer.ejs') %>

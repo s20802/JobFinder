@@ -1,0 +1,105 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+  <script type=application/javascript" src="/js/validationCommon.js"></script>
+  <script type=application/javascript" src="/js/validationJobOfferForm.js"></script>
+  <h2><%= pageTitle %></h2>
+  <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+
+    <input type="hidden" name="_id" value="<%= job._id %>">
+
+    <label for="companyName">Company name: <span class="symbol-required">*</span></label>
+    <input type="text" name="companyName" id="companyName" placeholder="" value="<%= job.companyName %>"
+          <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
+    <span id="errorCompanyName"></span>
+
+    <label for="position">Position: <span class="symbol-required">*</span></label>
+    <input type="text" name="position" id="position" value="<%= job.position %>"
+            <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
+    <span id="errorPosition"></span>
+
+    <label for="location">Location: <span class="symbol-required">*</span></label>
+    <input type="text" name="location" id="location" value="<%= job.location %>"
+            <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
+    <span id="errorLocation"></span>
+
+    <label for="minSalary">Minimum salary (PLN):</label>
+    <input type="number" name="minSalary" id="minSalary" value="<%= job.minSalary %>"
+            <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
+    <span id="errorMinSalary"></span>
+
+    <label for="maxSalary">Maximum salary (PLN):</label>
+    <input type="number" name="maxSalary" id="maxSalary" value="<%= job.maxSalary %>"
+            <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
+    <span id="errorMaxSalary"></span>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="5" cols="40" <%= (formMode === 'showDetails') ? 'disabled' : '' %>><%= job.description%>></textarea>
+    <span id="errorDescription"></span>
+
+    <% if (formMode !== 'showDetails') { %>
+      <div class="form-buttons">
+      </div>
+    <% } %>
+
+    <% if (formMode === 'showDetails') { %>
+      <div class="form-buttons">
+        <a href="/job-offers/edit/<%= job._id %> " class="button-edit">Edit</a>
+      </div>
+    <% } %>
+    <div class="form-buttons">
+      <span class="errors-text" id="errorsSummary"></span>
+      <% if (formMode !== 'showDetails') { %>
+        <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
+        <a class="form-button-cancel" href="/job-offers">Cancel</a>
+      <% } else { %>
+        <a class="form-button-cancel" href="/job-offers">Return</a>
+      <% } %>
+    </div>
+<!--    <div class="form-buttons">-->
+<!--      <p id="errorSummary"></p>-->
+<!--      <input type="submit" value="Add" class="form-button-submit">-->
+<!--      <a href="/job-offers" class="form-button-cancel">Cancel</a>-->
+<!--    </div>-->
+  </form>
+  <% if (formMode === 'showDetails' || formMode === 'edit') { %>
+
+
+    <h2>Recruitments</h2>
+
+    <table class="table-list">
+      <thead>
+      <tr>
+        <th>Username</th>
+        <th>Status</th>
+        <th>Date Opened</th>
+        <th>Notes</th>
+        <th>Options</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% for (let j of job.recruitments) { %>
+        <tr>
+          <td><a href ="/accounts/details/<%= j.account._id%>"></a><%= j.account.username%></td>
+          <td><%= j.status %> </td>
+          <td><%= j.dateOpened.toISOString().split('T')[0] %></td>
+          <td><%= j.notes %></td>
+          <td>
+            <ul class="list-actions">
+              <li>
+                <a href="/recruitments/details/<%= j._id %>"
+                   class="list-actions-button-details">Details</a>
+              </li>
+              <li>
+                <a href="/recruitments/delete/<%= j._id %>" class="list-actions-button-delete"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% } %>
+      </tbody>
+    </table>
+  <% } %>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>

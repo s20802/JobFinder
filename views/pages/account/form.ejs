@@ -1,0 +1,113 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+<script src="/js/validationCommon.js"></script>
+<script type="application/javascript" src="/js/validationAccountForm.js"></script>
+
+<h2><%= pageTitle %></h2>
+  <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+
+      <input type="hidden" name="_id" value="<%= acc._id %>">
+
+      <label for="username">Username: <span class="symbol-required">*</span></label>
+      <input type="text" name="username" id="username" placeholder="2-60 characters" value="<%= acc.username %>"
+             <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
+      <span id="errorUsername"></span>
+
+      <label for="name">Name: <span class="symbol-required">*</span></label>
+      <input type="text" name="name" id="name" placeholder="2-60 characters" value="<%= acc.name %>"
+            <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
+      <span id="errorName"></span>
+
+      <label for="surname">Surname: <span class="symbol-required">*</span></label>
+      <input type="text" name="surname" id="surname" placeholder="2-60 characters" value="<%= acc.surname %>"
+            <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
+      <span id="errorSurname"></span>
+
+      <label for="gender">Gender: <span class="symbol-required">*</span></label>
+<!--      <select name="gender" id="gender" required-->
+<!--                <%= (formMode === 'showDetails') ? 'disabled' : '' %>>-->
+<!--            <option value="<%= acc.gender%>" selected="selected"></option>-->
+<!--      </select>-->
+      <input type="text" name="gender" id="gender" value="<%= acc.gender%>"
+            <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
+      <span id="errorGender"></span>
+
+
+
+      <label for="password">Password: <span class="symbol-required">*</span></label>
+      <input type="text" name="password" id="password" placeholder="2-10 characters" value="<%= acc.password %>"
+            <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
+      <span id="error"></span>
+
+      <label for="email">E-mail: <span class="symbol-required">*</span></label>
+      <input type="email" name="email" id="email" placeholder="ex. name@domain.com" value="<%= acc.email%>"
+            <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
+      <span id="errorEmail"></span>
+
+      <label for="date">Date Created: <span class="symbol-required">*</span></label>
+      <input type="date" name="date" id="date" value="<%= acc.creationDate%>"
+            <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
+      <span id="errorDate"></span>
+
+      <% if (formMode !== 'showDetails') { %>
+          <div class="form-buttons">
+          </div>
+      <% } %>
+
+      <% if (formMode === 'showDetails') { %>
+          <div class="form-buttons">
+              <a href="/accounts/edit/<%= acc._id %> " class="button-edit">Edit</a>
+          </div>
+      <% } %>
+      <div class="form-buttons">
+          <span class="errors-text" id="errorsSummary"></span>
+          <% if (formMode !== 'showDetails') { %>
+              <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
+              <a class="form-button-cancel" href="/accounts">Cancel</a>
+          <% } else { %>
+              <a class="form-button-cancel" href="/accounts">Return</a>
+          <% } %>
+      </div>
+  </form>
+    <% if (formMode === 'showDetails' || formMode === 'edit') { %>
+
+
+        <h2>Recruitments</h2>
+
+        <table class="table-list">
+            <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Status</th>
+                <th>Date Opened</th>
+                <th>Notes</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for (let a of acc.recruitments) { %>
+                <tr>
+                    <td><a href ="/job-offers/details/<%= a.jobOffer._id%>"><%= a.jobOffer.companyName%></a></td>
+                    <td><%= a.status %> </td>
+                    <td><%= a.dateOpened.toISOString().split('T')[0] %></td>
+                    <td><%= a.notes %></td>
+                    <td>
+                        <ul class="list-actions">
+                            <li>
+                                <a href="/recruitments/details/<%= a._id %>"
+                                   class="list-actions-button-details">Details</a>
+                            </li>
+                            <li>
+                                <a href="/recruitments/delete/<%= a._id %>" class="list-actions-button-delete"
+                                   onclick="return confirm('Are you sure?')">Delete</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            <% } %>
+            </tbody>
+        </table>
+    <% } %>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>
