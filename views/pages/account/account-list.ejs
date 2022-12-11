@@ -1,0 +1,110 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Account List</h2>
+    <table class="table-list">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Gender</th>
+                <th>E-mail</th>
+                <th>Creation Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>kubacow</td>
+                <td>Jakub</td>
+                <td>Kowalski</td>
+                <td>Male</td>
+                <td>kubacow@mail.com</td>
+                <td>2022-01-30</td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-edit">Edit</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-delete">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>michal2001</td>
+                <td>Michał</td>
+                <td>Donica</td>
+                <td>Male</td>
+                <td>michal2001@mail.com</td>
+                <td>2020-12-20</td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-edit">Edit</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-delete">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>adamaria</td>
+                <td>Adrianna</td>
+                <td>Bronowicka</td>
+                <td>Female</td>
+                <td>bronowicka@mail.com</td>
+                <td>2022-06-15</td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-edit">Edit</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-delete">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>john2000</td>
+                <td>John</td>
+                <td>Smith</td>
+                <td>Male</td>
+                <td>johnjohn@mail.com</td>
+                <td>2021-01-05</td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="" class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-edit">Edit</a>
+                        </li>
+                        <li>
+                            <a href="" class="list-actions-button-delete">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <a href="/accounts/add" class="button-add">Add new account</a>
+    </p>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>

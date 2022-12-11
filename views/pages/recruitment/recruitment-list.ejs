@@ -1,0 +1,165 @@
+<%- include('../../fragments/header.ejs') %>
+<main>
+    <h2>Recruitment List</h2>
+    <table class="table-list">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Company Name</th>
+            <th>Position</th>
+            <th>Status</th>
+            <th>Date Opened</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>kubacow</td>
+            <td>BBC</td>
+            <td>Reporter</td>
+            <td>Interviewing</td>
+            <td>2022-10-25</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a href="recruitment-details.ejs" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href="edit-form.ejs" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>michal2001</td>
+            <td>BBC</td>
+            <td>Reporter</td>
+            <td>Opened</td>
+            <td>2022-10-30</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a href="recruitment-details.ejs" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href="edit-form.ejs" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>adamaria</td>
+            <td>Zara</td>
+            <td>Manager</td>
+            <td>CV sent</td>
+            <td>2022-10-22</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a href="recruitment-details.ejs" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href="edit-form.ejs" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>michal2001</td>
+            <td>Google</td>
+            <td>Data Analyst</td>
+            <td>Closed</td>
+            <td>2022-08-09</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a href="recruitment-details.ejs" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href="edit-form.ejs" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>john2000</td>
+            <td>BBC</td>
+            <td>Reporter</td>
+            <td>Closed</td>
+            <td>2022-10-29</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a href="recruitment-details.ejs" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href="edit-form.ejs" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>kubacow</td>
+            <td>Google</td>
+            <td>Data Analyst</td>
+            <td>Closed</td>
+            <td>2022-11-01</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a href="recruitment-details.ejs" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href="edit-form.ejs" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>kubacow</td>
+            <td>Job Finder</td>
+            <td>Junior Frontend Developer</td>
+            <td>Interviewing</td>
+            <td>2022-11-05</td>
+            <td>
+                <ul class="list-actions">
+                    <li>
+                        <a href="recruitment-details.ejs" class="list-actions-button-details">Details</a>
+                    </li>
+                    <li>
+                        <a href="edit-form.ejs" class="list-actions-button-edit">Edit</a>
+                    </li>
+                    <li>
+                        <a href="" class="list-actions-button-delete">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <a href="/recruitments/add" class="button-add">Add new recruitment</a>
+    </p>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>

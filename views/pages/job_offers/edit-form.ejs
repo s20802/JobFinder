@@ -1,0 +1,45 @@
+<%- include('../../fragments/header.ejs') %>
+<nav>
+  <ul>
+    <li><a href="views/index.ejs">Main Page</a></li>
+    <li><a href="../account/account-list.ejs">Accounts</a></li>
+    <li><a href="job-offer-list.ejs" class="active">Job Offers</a></li>
+    <li><a href="views/pages/recruitment/recruitment-list.ejs">Recruitment</a></li>
+  </ul>
+</nav>
+<main>
+  <h2>Edit job offer</h2>
+  <form class="form">
+    <label for="companyName">Company name: *</label>
+    <input type="text" name="companyName" id="companyName" value="BBC" required>
+    <span id="errorCompanyName"></span>
+
+    <label for="position">Position: *</label>
+    <input type="text" name="position" id="position" value="Reporter" required>
+    <span id="errorPosition"></span>
+
+    <label for="location">Location: *</label>
+    <input type="text" name="location" id="location" value="London, office" required>
+    <span id="errorLocation"></span>
+
+    <label for="minSalary">Minimum salary (PLN):</label>
+    <input type="number" name="minSalary" id="minSalary" value="1500" required>
+    <span id="errorMinSalary"></span>
+
+    <label for="maxSalary">Maximum salary (PLN):</label>
+    <input type="number" name="maxSalary" id="maxSalary" value="1800" required>
+    <span id="errorMaxSalary"></span>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="5" cols="40">Performing interviews.</textarea>
+    <span id="errorDescription"></span>
+
+    <div class="form-buttons">
+      <p id="errorSummary"></p>
+      <input type="submit" value="Add" class="form-button-submit">
+      <a href="job-offer-list.ejs" class="form-button-cancel">Cancel</a>
+    </div>
+  </form>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>

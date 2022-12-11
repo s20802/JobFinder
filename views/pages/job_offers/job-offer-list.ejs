@@ -1,0 +1,130 @@
+<%- include('../../fragments/header.ejs') %>
+  <main>
+    <h2>Job Offers</h2>
+    <table class="table-list">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Position</th>
+<!--            <th>Description</th>-->
+          <th>Location</th>
+          <th>Minimum Salary (PLN)</th>
+          <th>Maximum Salary (PLN)</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Google</td>
+          <td>Data Analyst</td>
+<!--            <td>Analyzing data</td>-->
+          <td>Warsaw, home</td>
+          <td>13000</td>
+          <td>18000</td>
+          <td>
+            <ul class="list-actions">
+              <li>
+                <a href="job-details.ejs" class="list-actions-button-details">Details</a>
+              </li>
+              <li>
+                <a href="edit-form.ejs" class="list-actions-button-edit">Edit</a>
+              </li>
+              <li>
+                <a href="" class="list-actions-button-delete">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>CIA</td>
+          <td>Agent</td>
+<!--            <td>-REDACTED-</td>-->
+          <td>Global</td>
+          <td>15000</td>
+          <td>20000</td>
+          <td>
+            <ul class="list-actions">
+              <li>
+                <a href="job-details.ejs" class="list-actions-button-details">Details</a>
+              </li>
+              <li>
+                <a href="edit-form.ejs" class="list-actions-button-edit">Edit</a>
+              </li>
+              <li>
+                <a href="" class="list-actions-button-delete">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>BBC</td>
+          <td>Reporter</td>
+<!--            <td>Performing interviews.</td>-->
+          <td>London, office</td>
+          <td>4500</td>
+          <td>5500</td>
+          <td>
+            <ul class="list-actions">
+              <li>
+                <a href="job-details.ejs" class="list-actions-button-details">Details</a>
+              </li>
+              <li>
+                <a href="edit-form.ejs" class="list-actions-button-edit">Edit</a>
+              </li>
+              <li>
+                <a href="" class="list-actions-button-delete">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Zara</td>
+          <td>Manager</td>
+<!--            <td>Managing Zara store.</td>-->
+          <td>Lublin, on site</td>
+          <td>3000</td>
+          <td>4000</td>
+          <td>
+            <ul class="list-actions">
+              <li>
+                <a href="job-details.ejs" class="list-actions-button-details">Details</a>
+              </li>
+              <li>
+                <a href="edit-form.ejs" class="list-actions-button-edit">Edit</a>
+              </li>
+              <li>
+                <a href="" class="list-actions-button-delete">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Job Finder</td>
+          <td>Junior Frontend Developer</td>
+<!--            <td>Working in HTML, CSS, and Javascript while developing JobFinder website.</td>-->
+          <td>Warsaw, office</td>
+          <td>20000</td>
+          <td>25000</td>
+          <td>
+            <ul class="list-actions">
+              <li>
+                <a href="job-details.ejs" class="list-actions-button-details">Details</a>
+              </li>
+              <li>
+                <a href="edit-form.ejs" class="list-actions-button-edit">Edit</a>
+              </li>
+              <li>
+                <a href="" class="list-actions-button-delete">Delete</a>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      <a href="/job-offers/add" class="button-add">Add new job offer</a>
+    </p>
+</main>
+<%- include('../../fragments/footer.ejs') %>

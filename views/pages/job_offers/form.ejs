@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Finder</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/js/validationCommon.js"></script>
+  <script src="/js/validationJobOfferForm.js"></script>
+</head>
+<body>
+
+<%- include('../../fragments/header.ejs') %>
+<main>
+  <h2>New job offer</h2>
+  <form class="form" novalidate onsubmit="return validateForm()">
+    <label for="companyName">Company name: <span class="symbol-required">*</span></label>
+    <input type="text" name="companyName" id="companyName" required>
+    <span id="errorCompanyName"></span>
+
+    <label for="position">Position: <span class="symbol-required">*</span></label>
+    <input type="text" name="position" id="position" required>
+    <span id="errorPosition"></span>
+
+    <label for="location">Location: <span class="symbol-required">*</span></label>
+    <input type="text" name="location" id="location" required>
+    <span id="errorLocation"></span>
+
+    <label for="minSalary">Minimum salary (PLN):</label>
+    <input type="number" name="minSalary" id="minSalary" required>
+    <span id="errorMinSalary"></span>
+
+    <label for="maxSalary">Maximum salary (PLN):</label>
+    <input type="number" name="maxSalary" id="maxSalary" required>
+    <span id="errorMaxSalary"></span>
+
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" rows="5" cols="40"></textarea>
+    <span id="errorDescription"></span>
+
+    <div class="form-buttons">
+      <p id="errorSummary"></p>
+      <input type="submit" value="Add" class="form-button-submit">
+      <a href="/job-offers" class="form-button-cancel">Cancel</a>
+    </div>
+  </form>
+
+</main>
+<%- include('../../fragments/footer.ejs') %>
