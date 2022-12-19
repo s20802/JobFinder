@@ -22,7 +22,7 @@
                 <td><%= acc.surname %></td>
                 <td><%= acc.gender %></td>
                 <td><%= acc.email %></td>
-                <td><%= acc.creationDate %></td>
+                <td><%= acc.creationDate.toISOString().split('T') [0] %></td>
                 <td>
                     <ul class="list-actions">
                         <li>

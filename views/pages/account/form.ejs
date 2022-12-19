@@ -1,6 +1,5 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-<script src="/js/validationCommon.js"></script>
 <script type="application/javascript" src="/js/validationAccountForm.js"></script>
 
 <h2><%= pageTitle %></h2>
@@ -24,10 +23,6 @@
       <span id="errorSurname"></span>
 
       <label for="gender">Gender: <span class="symbol-required">*</span></label>
-<!--      <select name="gender" id="gender" required-->
-<!--                <%= (formMode === 'showDetails') ? 'disabled' : '' %>>-->
-<!--            <option value="<%= acc.gender%>" selected="selected"></option>-->
-<!--      </select>-->
       <input type="text" name="gender" id="gender" value="<%= acc.gender%>"
             <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
       <span id="errorGender"></span>
@@ -44,10 +39,10 @@
             <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
       <span id="errorEmail"></span>
 
-      <label for="date">Date Created: <span class="symbol-required">*</span></label>
-      <input type="date" name="date" id="date" value="<%= acc.creationDate%>"
-            <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
-      <span id="errorDate"></span>
+      <label for="creationDate">Date Created: <span class="symbol-required">*</span></label>
+      <input type="date" name="creationDate" id="creationDate" value="<%= acc.creationDate ? acc.creationDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0] %>"
+              <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
+      <span id="errorCreationDate"></span>
 
       <% if (formMode !== 'showDetails') { %>
           <div class="form-buttons">

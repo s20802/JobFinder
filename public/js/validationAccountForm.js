@@ -6,7 +6,7 @@ function validateForm() {
     const surnameInput = document.getElementById('surname');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
-    const dateInput = document.getElementById('date')
+    const dateInput = document.getElementById('creationDate')
 
     // form error inputs
     const errorUsername = document.getElementById('errorUsername');
@@ -14,7 +14,7 @@ function validateForm() {
     const errorSurname = document.getElementById('errorSurname');
     const errorEmail = document.getElementById('errorEmail');
     const errorPassword = document.getElementById('error');
-    const errorDate = document.getElementById('errorDate');
+    const errorDate = document.getElementById('errorCreationDate');
     const errorsSummary = document.getElementById('errorSummary');
 
     resetErrors([usernameInput, nameInput, surnameInput,  emailInput, passwordInput, dateInput],

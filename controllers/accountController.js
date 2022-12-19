@@ -57,21 +57,11 @@ exports.showAccountEdit = (req, res, next) => {
 }
 
 exports.addAccount = (req, res, next) => {
-    const accData = { ...req.body};
+    const accData = {...req.body};
     AccountRepository.createAccount(accData)
         .then(result => {
             res.redirect('/accounts')
-        })
-    res.render('pages/account/form', {
-        acc: accData,
-        pageTitle: 'Add account',
-        formMode: 'add',
-        btnLabel: 'Add',
-        formAction: '/accounts/add',
-        navLocation: 'acc',
-        buttonCSS: 'submit',
-        validationErrors: []
-    });
+        });
 }
 
 exports.updateAccount = (req, res, next) => {

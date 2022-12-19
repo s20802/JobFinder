@@ -33,7 +33,7 @@ const Account = sequelize.define('Account', {
     },
     creationDate: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
     }
 });
 
