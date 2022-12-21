@@ -3,46 +3,80 @@
 <script type="application/javascript" src="/js/validationAccountForm.js"></script>
 
 <h2><%= pageTitle %></h2>
-  <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+  <form class="form" method="post" action="<%=formAction%>" novalidate>
 
       <input type="hidden" name="_id" value="<%= acc._id %>">
 
       <label for="username">Username: <span class="symbol-required">*</span></label>
-      <input type="text" name="username" id="username" placeholder="2-60 characters" value="<%= acc.username %>"
+      <input class="<%= validationErrors.find(e => e.path.includes('username')) ? 'error-input' : '' %>"
+             type="text" name="username" id="username" placeholder="2-60 characters" value="<%= acc.username %>"
              <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
-      <span id="errorUsername"></span>
+      <span id="errorUsername" class="errors-text">
+          <% if(validationErrors.find(e => e.path.includes('username'))){ %>
+              <%= validationErrors.find(e => e.path.includes('username')).message %>
+          <% } %>
+      </span>
 
       <label for="name">Name: <span class="symbol-required">*</span></label>
-      <input type="text" name="name" id="name" placeholder="2-60 characters" value="<%= acc.name %>"
+      <input class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>"
+             type="text" name="name" id="name" placeholder="8-14 characters" value="<%= acc.name %>"
             <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
-      <span id="errorName"></span>
+      <span id="errorName" class="errors-text">
+          <% if(validationErrors.find(e => e.path.includes('name'))){ %>
+              <%= validationErrors.find(e => e.path.includes('name')).message %>
+          <% } %>
+      </span>
 
       <label for="surname">Surname: <span class="symbol-required">*</span></label>
-      <input type="text" name="surname" id="surname" placeholder="2-60 characters" value="<%= acc.surname %>"
+      <input class="<%= validationErrors.find(e => e.path.includes('surname')) ? 'error-input' : '' %>"
+             type="text" name="surname" id="surname" placeholder="2-60 characters" value="<%= acc.surname %>"
             <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
-      <span id="errorSurname"></span>
+      <span id="errorSurname" class="errors-text">
+          <% if(validationErrors.find(e => e.path.includes('surname'))){ %>
+              <%= validationErrors.find(e => e.path.includes('surname')).message %>
+          <% } %></span>
 
       <label for="gender">Gender: <span class="symbol-required">*</span></label>
-      <input type="text" name="gender" id="gender" value="<%= acc.gender%>"
+      <input class="<%= validationErrors.find(e => e.path.includes('gender')) ? 'error-input' : '' %>"
+             type="text" name="gender" id="gender" placeholder="2-60 characters" value="<%= acc.gender%>"
             <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
-      <span id="errorGender"></span>
+      <span id="errorGender" class="errors-text">
+          <% if(validationErrors.find(e => e.path.includes('gender'))){ %>
+              <%= validationErrors.find(e => e.path.includes('gender')).message %>
+          <% } %>
+      </span>
 
 
 
       <label for="password">Password: <span class="symbol-required">*</span></label>
-      <input type="text" name="password" id="password" placeholder="2-10 characters" value="<%= acc.password %>"
+      <input class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>"
+             type="text" name="password" id="password" placeholder="2-10 characters" value="<%= acc.password %>"
             <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
-      <span id="error"></span>
+      <span id="errorPassword" class="errors-text">
+          <% if(validationErrors.find(e => e.path.includes('password'))){ %>
+              <%= validationErrors.find(e => e.path.includes('password')).message %>
+          <% } %>
+      </span>
 
       <label for="email">E-mail: <span class="symbol-required">*</span></label>
-      <input type="email" name="email" id="email" placeholder="ex. name@domain.com" value="<%= acc.email%>"
+      <input class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>"
+             type="email" name="email" id="email" placeholder="ex. name@domain.com" value="<%= acc.email%>"
             <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
-      <span id="errorEmail"></span>
+      <span id="errorEmail" class="errors-text">
+          <% if(validationErrors.find(e => e.path.includes('email'))){ %>
+              <%= validationErrors.find(e => e.path.includes('email')).message %>
+          <% } %>
+      </span>
 
       <label for="creationDate">Date Created: <span class="symbol-required">*</span></label>
-      <input type="date" name="creationDate" id="creationDate" value="<%= acc.creationDate ? acc.creationDate.toISOString().split('T')[0] : new Date().toISOString().split('T')[0] %>"
+      <input class="<%= validationErrors.find(e => e.path.includes('creationDate')) ? 'error-input' : '' %>"
+             type="date" name="creationDate" id="creationDate" value="<%= acc.creationDate ? acc.creationDate : new Date().toISOString().split('T')[0] %>"
               <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
-      <span id="errorCreationDate"></span>
+      <span id="errorCreationDate" class="errors-text">
+          <% if(validationErrors.find(e => e.path.includes('creationDate'))){ %>
+              <%= validationErrors.find(e => e.path.includes('creationDate')).message %>
+          <% } %>
+      </span>
 
       <% if (formMode !== 'showDetails') { %>
           <div class="form-buttons">
@@ -82,7 +116,7 @@
             <tbody>
             <% for (let a of acc.recruitments) { %>
                 <tr>
-                    <td><a href ="/job-offers/details/<%= a.jobOffer._id%>"><%= a.jobOffer.companyName%></a></td>
+                    <td><%= a.jobOffer.companyName%></td>
                     <td><%= a.status %> </td>
                     <td><%= a.dateOpened.toISOString().split('T')[0] %></td>
                     <td><%= a.notes %></td>

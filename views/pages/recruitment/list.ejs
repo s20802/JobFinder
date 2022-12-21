@@ -7,7 +7,6 @@
         <tr>
             <th>Status</th>
             <th>Date Opened</th>
-            <th>Notes</th>
             <th>Options</th>
         </tr>
 
@@ -16,8 +15,7 @@
         <% for (let rec of recs) { %>
             <tr>
                 <td><%= rec.status%></td>
-                <td> <%= rec.dateOpened%> </td>
-                <td> <%= rec.notes%></td>
+                <td> <%= rec.dateOpened.toISOString().split('T')[0] %> </td>
                 <td>
                     <ul class="list-actions">
                         <li>
@@ -38,7 +36,7 @@
     </table>
 
     <p>
-        <a href="/job-offers/add" class="button-add">Add new job offer</a>
+        <a href="/recruitments/add" class="button-add">Add recruitment</a>
     </p>
 </main>
 <%- include('../../fragments/footer.ejs') %>

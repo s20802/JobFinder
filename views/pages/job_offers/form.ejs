@@ -1,40 +1,70 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-  <script type=application/javascript" src="/js/validationCommon.js"></script>
-  <script type=application/javascript" src="/js/validationJobOfferForm.js"></script>
+  <script type=application/javascript" src="public/js/validationCommon.js"></script>
+  <script type=application/javascript" src="public/js/validationJobOfferForm.js"></script>
   <h2><%= pageTitle %></h2>
-  <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+  <form class="form" method="post" action="<%=formAction%>">
 
     <input type="hidden" name="_id" value="<%= job._id %>">
 
     <label for="companyName">Company name: <span class="symbol-required">*</span></label>
-    <input type="text" name="companyName" id="companyName" placeholder="" value="<%= job.companyName %>"
+    <input class="<%= validationErrors.find(e => e.path.includes('companyName')) ? 'error-input' : '' %>"
+           type="text" name="companyName" id="companyName" placeholder="2-20 characters" value="<%= job.companyName %>"
           <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
-    <span id="errorCompanyName"></span>
+    <span id="errorCompanyName" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('companyName'))){ %>
+        <%= validationErrors.find(e => e.path.includes('companyName')).message %>
+      <% } %>
+    </span>
 
     <label for="position">Position: <span class="symbol-required">*</span></label>
-    <input type="text" name="position" id="position" value="<%= job.position %>"
+    <input class="<%= validationErrors.find(e => e.path.includes('position')) ? 'error-input' : '' %>"
+           type="text" name="position" id="position" value="<%= job.position %>"
             <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
-    <span id="errorPosition"></span>
+    <span id="errorPosition" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('position'))){ %>
+        <%= validationErrors.find(e => e.path.includes('position')).message %>
+      <% } %>
+    </span>
 
     <label for="location">Location: <span class="symbol-required">*</span></label>
-    <input type="text" name="location" id="location" value="<%= job.location %>"
+    <input class="<%= validationErrors.find(e => e.path.includes('location')) ? 'error-input' : '' %>"
+           type="text" name="location" id="location" value="<%= job.location %>"
             <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
-    <span id="errorLocation"></span>
+    <span id="errorLocation" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('location'))){ %>
+        <%= validationErrors.find(e => e.path.includes('location')).message %>
+      <% } %>
+    </span>
 
     <label for="minSalary">Minimum salary (PLN):</label>
-    <input type="number" name="minSalary" id="minSalary" value="<%= job.minSalary %>"
+    <input class="<%= validationErrors.find(e => e.path.includes('minSalary')) ? 'error-input' : '' %>"
+           type="number" name="minSalary" id="minSalary"
             <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
-    <span id="errorMinSalary"></span>
+    <span id="errorMinSalary" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('minSalary'))){ %>
+        <%= validationErrors.find(e => e.path.includes('minSalary')).message %>
+      <% } %>
+    </span>
 
     <label for="maxSalary">Maximum salary (PLN):</label>
-    <input type="number" name="maxSalary" id="maxSalary" value="<%= job.maxSalary %>"
+    <input class="<%= validationErrors.find(e => e.path.includes('maxSalary')) ? 'error-input' : '' %>"
+           type="number" name="maxSalary" id="maxSalary"
             <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
-    <span id="errorMaxSalary"></span>
+    <span id="errorMaxSalary" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('maxSalary'))){ %>
+        <%= validationErrors.find(e => e.path.includes('maxSalary')).message %>
+      <% } %>
+    </span>
 
     <label for="description">Description:</label>
-    <textarea id="description" name="description" rows="5" cols="40" <%= (formMode === 'showDetails') ? 'disabled' : '' %>><%= job.description%>></textarea>
-    <span id="errorDescription"></span>
+    <textarea class="<%= validationErrors.find(e => e.path.includes('description')) ? 'error-input' : '' %>"
+              id="description" name="description" rows="5" cols="40" <%= (formMode === 'showDetails') ? 'disabled' : '' %>><%= job.description%></textarea>
+    <span id="errorDescription" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('description'))){ %>
+        <%= validationErrors.find(e => e.path.includes('description')).message %>
+      <% } %>
+    </span>
 
     <% if (formMode !== 'showDetails') { %>
       <div class="form-buttons">

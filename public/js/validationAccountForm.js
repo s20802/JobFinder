@@ -13,7 +13,7 @@ function validateForm() {
     const errorName = document.getElementById('errorName');
     const errorSurname = document.getElementById('errorSurname');
     const errorEmail = document.getElementById('errorEmail');
-    const errorPassword = document.getElementById('error');
+    const errorPassword = document.getElementById('errorPassword');
     const errorDate = document.getElementById('errorCreationDate');
     const errorsSummary = document.getElementById('errorSummary');
 

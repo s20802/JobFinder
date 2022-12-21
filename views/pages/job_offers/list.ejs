@@ -19,8 +19,8 @@
           <td><%= job.companyName %></td>
           <td> <%= job.position %> </td>
           <td> <%= job.location%></td>
-          <td><%= job.minSalary%></td>
-          <td><%= job.maxSalary%></td>
+          <td><%= job.minSalary ? job.minSalary : 'Minimum salary not set' %></td>
+          <td><%= job.maxSalary ? job.maxSalary : 'Maximum salary not set' %></td>
           <td>
             <ul class="list-actions">
               <li>

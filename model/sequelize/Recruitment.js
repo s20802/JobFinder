@@ -10,15 +10,35 @@ const Recruitment = sequelize.define('Recruitment', {
     },
     dateOpened: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Field is required!"
+            },
+        }
     },
     status: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            notEmpty: {
+                msg: "Field is required!"
+            },
+            len: {
+                args: [2, 60],
+                msg: "Field should contain from 2 to 60 characters!"
+            }
+        }
     },
     notes: {
-        type: Sequelize.STRING,
-        allowNull: true
+        type: Sequelize.TEXT,
+        allowNull: true,
+        validate: {
+            len: {
+                args: [0, 255],
+                msg: "Field should contain a maximum of 255 characters!"
+            }
+        },
     }
 });
 

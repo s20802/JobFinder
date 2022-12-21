@@ -13,12 +13,11 @@ exports.showAccountList = (req, res, next) => {
 exports.showAddAccountForm = (req, res, next) => {
     res.render('pages/account/form', {
         acc: {},
-        formMode: 'createNew',
         pageTitle: 'New account',
-        formAction: '/accounts/add',
+        formMode: 'createNew',
         btnLabel: 'Add',
+        formAction: '/accounts/add',
         navLocation: 'acc',
-        buttonCSS: 'submit',
         validationErrors: []
     });
 }
@@ -33,7 +32,6 @@ exports.showAccountDetails = (req, res, next) => {
                 pageTitle: 'Account details',
                 formAction: '',
                 navLocation: 'acc',
-                buttonCSS: 'edit',
                 validationErrors: []
             });
         });
@@ -50,7 +48,6 @@ exports.showAccountEdit = (req, res, next) => {
                 btnLabel: 'Edit',
                 formAction: '/accounts/edit',
                 navLocation: 'acc',
-                buttonCSS: 'edit',
                 validationErrors: []
             });
         });
@@ -60,18 +57,55 @@ exports.addAccount = (req, res, next) => {
     const accData = {...req.body};
     AccountRepository.createAccount(accData)
         .then(result => {
-            res.redirect('/accounts')
+            res.redirect('/accounts');
+        }).catch(err => {
+        err.errors.forEach(e => {
+            if (e.path.includes('username') && e.type === 'unique violation') {
+                e.message = 'Username is being used!';
+            }
+             else if (e.path.includes('email') && e.type === 'unique violation') {
+                e.message = 'Email is being used!';
+            }
+        })
+        res.render('pages/account/form', {
+            acc: accData,
+            pageTitle: 'Add account',
+            formMode: 'createNew',
+            btnLabel: 'Add',
+            formAction: '/accounts/add',
+            navLocation: 'acc',
+            buttonCSS: 'submit',
+            validationErrors: err.errors
         });
-}
+    });
+};
 
 exports.updateAccount = (req, res, next) => {
-
     const accId = req.body._id;
-    const accData = { ...req.body};
+    const accData = {...req.body};
     AccountRepository.updateAccount(accId, accData)
         .then(result => {
             res.redirect('/accounts');
+        }).catch(err => {
+        err.errors.forEach(e => {
+            if (e.path.includes('username') && e.type === 'unique violation') {
+                e.message = 'Username is being used!';
+            }
+            else if (e.path.includes('email') && e.type === 'unique violation') {
+                e.message = 'Email is being used!';
+            }
+        })
+        res.render('pages/account/form', {
+            acc: accData,
+            formMode: 'edit',
+            pageTitle: 'Edit account',
+            btnLabel: 'Edit',
+            formAction: '/accounts/edit',
+            navLocation: 'acc',
+            buttonCSS: 'edit',
+            validationErrors: err.errors
         });
+    });
 };
 
 exports.deleteAccount = (req, res, next) => {

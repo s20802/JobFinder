@@ -1,24 +1,22 @@
 function validateForm() {
 
     //form inputs
-    const recUsernameInput = document.getElementById('recUsername');
-    const companyRecNameInput = document.getElementById('companyRecName');
-    const recPositionInput = document.getElementById('recPosition');
+    const recUsernameInput = document.getElementById('acc_id');
+    const companyRecNameInput = document.getElementById('job_id');
     const statusInput = document.getElementById('status');
     const dateOpenedInput = document.getElementById('dateOpened');
     const notesInput = document.getElementById('notes');
 
     //form errors
-    const errorRecUsername = document.getElementById('errorRecUsername');
-    const errorCompanyRecName = document.getElementById('errorCompanyRecName');
-    const errorRecPosition = document.getElementById('errorRecPosition');
+    const errorRecUsername = document.getElementById('errorAccId');
+    const errorCompanyRecName = document.getElementById('errorJobId');
     const errorStatus = document.getElementById('errorStatus');
     const errorDateOpened = document.getElementById('errorDateOpened');
     const errorNotes = document.getElementById('errorNotes');
     const errorsSummary = document.getElementById('errorSummary');
 
-    resetErrors([recUsernameInput, companyRecNameInput, recPositionInput, statusInput, dateOpenedInput, notesInput],
-        [errorRecUsername, errorCompanyRecName, errorRecPosition, errorStatus, errorStatus, errorDateOpened, errorNotes], errorsSummary)
+    resetErrors([recUsernameInput, companyRecNameInput, statusInput, dateOpenedInput, notesInput],
+        [errorRecUsername, errorCompanyRecName, errorStatus, errorStatus, errorDateOpened, errorNotes], errorsSummary)
 
     let valid = true;
 
@@ -40,16 +38,6 @@ function validateForm() {
         valid = false;
         companyRecNameInput.classList.add("error-input");
         errorCompanyRecName.innerText = "Field required";
-    }
-
-    if(!checkRequired(recPositionInput.value)) {
-        valid = false;
-        recPositionInput.classList.add("error-input");
-        errorRecPosition.innerText = "Field required";
-    } else if (!checkTextLengthRange(recPositionInput.value, 2, 60)) {
-        valid = false;
-        recPositionInput.classList.add("error-input");
-        errorRecPosition.innerText = "Field should have 2 to 60 characters";
     }
 
     let nowDate = new Date(),

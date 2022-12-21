@@ -4,44 +4,77 @@
 <main>
     <script type="application/javascript" src="/js/validationCommon.js"></script>
     <script type="application/javascript" src="/js/validationRecruitmentForm.js"></script>
-    <h2><%= pageTitle%></h2>
-    <form class="form" method="post" action="<%= formAction%> "novalidate onsubmit="return validateForm();">
+    <h2><%= pageTitle %></h2>
+    <form class="form" method="post" action="<%= formAction%> " novalidate onsubmit="return validateForm();">
 
         <input type="hidden" name="_id" value="<%= rec._id %>"/>
 
-        <label for="recUsername">Username: <span class="symbol-required">*</span></label>
-        <select name="recUsername" id="recUsername" required <%= (formMode === 'showDetails') ? 'disabled' : '' %>>
-            <option value="" selected>-- Select account --</option>
-            <% for (let i=0; i<allAccs.length; i++) {let acc = allAccs[i]; %>
-                <option value="<%= acc._id %>" label="<%= acc.username%> + '3123'"><%= (rec._id && acc._id.toString() === rec.account._id.toString()) ? 'selected' : ''%></option>
+        <label for="acc_id">Account: <span class="symbol-required">*</span></label>
+        <select class="<%= validationErrors.find(e => e.path.includes('acc_id')) ? 'error-input' : '' %>"
+                name="acc_id" id="acc_id" required
+                <%= (formMode === 'showDetails') ? 'disabled' : '' %>>
+            <% if (formMode !== 'edit' ){ %>
+                <option value="" selected="selected">--select account--</option>
             <% } %>
-        </select>
-        <span id="errorRecUsername" class="errors-text"></span>
-
-        <label for="companyRecName">Company Name: <span class="symbol-required">*</span></label>
-        <select name="companyRecName" id="companyRecName" required <%= (formMode === 'showDetails') ? 'disabled' : ''%>>
-            <option value="" selected>-- Select job offer --</option>
-            <% for (let i=0; i< allJobs.length; i++) {let job = allJobs[i]; %>
-            <option value="<%= job._id %>" label="<%= job.companyName%>">
-                <%= (rec._id && job._id.toString() === rec.jobOffer._id.toString()) ? 'selected' : ''%>
+            <% for (let i = 0; i < allAccs.length; i++) { let acc = allAccs[i]; %>
+            <option value="<%= acc._id %>" label="<%= acc.username%>"
+            <%= (rec._id && acc._id.toString() === rec.account._id.toString()) ? 'selected' : '' %>>
             </option>
             <% } %>
         </select>
-        <span id="errorCompanyRecName" class="errors-text"></span>
+        <span id="errorAccId" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('acc_id'))){ %>
+                <%= validationErrors.find(e => e.path.includes('acc_id')).message %>
+            <% } %>
+        </span>
+
+        <label for="job_id">Job offer: <span class="symbol-required">*</span></label>
+        <select class="<%= validationErrors.find(e => e.path.includes('job_id')) ? 'error-input' : '' %>"
+                name="job_id" id="job_id" required
+                <%= (formMode === 'showDetails') ? 'disabled' : '' %>>
+            <% if (formMode !== 'edit' ){ %>
+                <option value="" selected="selected">--select job offer--</option>
+            <% } %>
+            <% for (let i = 0; i < allJobs.length; i++) { let job = allJobs[i]; %>
+            <option value="<%= job._id %>" label="<%= job.companyName + ' (' + job.position + ')'%>"
+                <%= (rec._id && job._id.toString() === rec.jobOffer._id.toString()) ? 'selected' : '' %>>
+            </option>
+            <% } %>
+        </select>
+        <span id="errorJobId" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('job_id'))){ %>
+                <%= validationErrors.find(e => e.path.includes('job_id')).message %>
+            <% } %>
+        </span>
 
         <label for="status">Status:</label>
-        <input type="text" name="status" id="status" value="<%= rec.status %>"
+        <input class="<%= validationErrors.find(e => e.path.includes('status')) ? 'error-input' : '' %>"
+               type="text" name="status" id="status" value="<%= rec.status %>"
                 <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
-        <span id="errorStatus" class="errors-text"></span>
+        <span id="errorStatus" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('status'))){ %>
+                <%= validationErrors.find(e => e.path.includes('status')).message %>
+            <% } %>
+        </span>
 
         <label for="dateOpened">Date Opened: <span class="symbol-required">*</span></label>
-        <input type="date" name="dateOpened" id="dateOpened" value="<%= rec.dateOpened %>"
+        <input class="<%= validationErrors.find(e => e.path.includes('dateOpened')) ? 'error-input' : '' %>"
+               type="date" name="dateOpened" id="dateOpened" value="<%= rec.dateOpened ? rec.dateOpened : new Date().toISOString().split('T')[0] %>"
                 <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
-        <span id="errorDateOpened" class="errors-text"></span>
+        <span id="errorDateOpened" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('dateOpened'))){ %>
+                <%= validationErrors.find(e => e.path.includes('dateOpened')).message %>
+            <% } %>
+        </span>
 
         <label for="notes">Notes:</label>
-        <textarea id="notes" name="notes" rows="5" cols="40" <%= (formMode === 'showDetails') ? 'disabled' : '' %>><%= rec.notes%></textarea>
-        <span id="errorNotes" class="errors-text"></span>
+        <textarea class="<%= validationErrors.find(e => e.path.includes('notes')) ? 'error-input' : '' %>"
+                  id="notes" name="notes" rows="5" cols="40" <%= (formMode === 'showDetails') ? 'disabled' : '' %>><%= rec.notes%></textarea>
+        <span id="errorNotes" class="errors-text">
+            <% if(validationErrors.find(e => e.path.includes('notes'))){ %>
+                <%= validationErrors.find(e => e.path.includes('notes')).message %>
+            <% } %>
+        </span>
 
         <% if (formMode !== 'showDetails') { %>
             <div class="form-buttons">
@@ -62,13 +95,6 @@
                 <a class="form-button-cancel" href="/recruitments">Return</a>
             <% } %>
         </div>
-        <!--    <div class="form-buttons">-->
-        <!--      <p id="errorSummary"></p>-->
-        <!--      <input type="submit" value="Add" class="form-button-submit">-->
-        <!--      <a href="/job-offers" class="form-button-cancel">Cancel</a>-->
-        <!--    </div>-->
     </form>
-<!--    -->
-
 </main>
 <%- include('../../fragments/footer.ejs') %>
