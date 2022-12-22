@@ -39,7 +39,7 @@
 
     <label for="minSalary">Minimum salary (PLN):</label>
     <input class="<%= validationErrors.find(e => e.path.includes('minSalary')) ? 'error-input' : '' %>"
-           type="number" name="minSalary" id="minSalary"
+           type="number" name="minSalary" id="minSalary" value="<%= job.minSalary ? job.minSalary : 0 %>"
             <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
     <span id="errorMinSalary" class="errors-text">
       <% if(validationErrors.find(e => e.path.includes('minSalary'))){ %>
@@ -49,7 +49,7 @@
 
     <label for="maxSalary">Maximum salary (PLN):</label>
     <input class="<%= validationErrors.find(e => e.path.includes('maxSalary')) ? 'error-input' : '' %>"
-           type="number" name="maxSalary" id="maxSalary"
+           type="number" name="maxSalary" id="maxSalary" value="<%= job.maxSalary ? job.maxSalary : 0%>"
             <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
     <span id="errorMaxSalary" class="errors-text">
       <% if(validationErrors.find(e => e.path.includes('maxSalary'))){ %>

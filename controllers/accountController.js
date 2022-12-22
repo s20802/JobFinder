@@ -83,10 +83,16 @@ exports.addAccount = (req, res, next) => {
 exports.updateAccount = (req, res, next) => {
     const accId = req.body._id;
     const accData = {...req.body};
-    AccountRepository.updateAccount(accId, accData)
-        .then(result => {
+    let acc;
+    AccountRepository.getAccountById(accId)
+        .then((account) => {
+            acc = account;
+            return AccountRepository.updateAccount(accId, accData);
+        })
+        .then((result) => {
             res.redirect('/accounts');
-        }).catch(err => {
+        })
+        .catch((err) => {
         err.errors.forEach(e => {
             if (e.path.includes('username') && e.type === 'unique violation') {
                 e.message = 'Username is being used!';
@@ -96,7 +102,7 @@ exports.updateAccount = (req, res, next) => {
             }
         })
         res.render('pages/account/form', {
-            acc: accData,
+            acc: acc,
             formMode: 'edit',
             pageTitle: 'Edit account',
             btnLabel: 'Edit',

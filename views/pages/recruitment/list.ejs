@@ -5,6 +5,8 @@
     <table class="table-list">
 
         <tr>
+            <th>Username</th>
+            <th>Company Name</th>
             <th>Status</th>
             <th>Date Opened</th>
             <th>Options</th>
@@ -14,6 +16,8 @@
         <tbody>
         <% for (let rec of recs) { %>
             <tr>
+                <td><%= rec.account.username%></td>
+                <td><%= rec.jobOffer.companyName%></td>
                 <td><%= rec.status%></td>
                 <td> <%= rec.dateOpened.toISOString().split('T')[0] %> </td>
                 <td>

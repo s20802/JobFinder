@@ -59,7 +59,7 @@
 
         <label for="dateOpened">Date Opened: <span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('dateOpened')) ? 'error-input' : '' %>"
-               type="date" name="dateOpened" id="dateOpened" value="<%= rec.dateOpened ? rec.dateOpened : new Date().toISOString().split('T')[0] %>"
+               type="date" name="dateOpened" id="dateOpened" value="<%= rec.dateOpened ? rec.dateOpened.toISOString().split('T')[0] : new Date().toISOString().split('T')[0] %>"
                 <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
         <span id="errorDateOpened" class="errors-text">
             <% if(validationErrors.find(e => e.path.includes('dateOpened'))){ %>
@@ -96,5 +96,83 @@
             <% } %>
         </div>
     </form>
+
+    <% if (formMode === 'showDetails' || formMode === 'edit') { %>
+
+
+        <h2>Account</h2>
+
+        <table class="table-list">
+            <thead>
+            <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><%= rec.account.username %></td>
+                <td><%= rec.account.name %></td>
+                <td><%= rec.account.surname %></td>
+                <td><%= rec.account.email %></td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="/accounts/details/<%= rec.account._id %>"
+                               class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="/accounts/delete/<%= rec.account._id %>" class="list-actions-button-delete"
+                               onclick="return confirm('Are you sure?')">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+
+            </tbody>
+        </table>
+        <h2>Job Offer</h2>
+
+        <table class="table-list">
+            <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Position</th>
+                <th>Location</th>
+                <th>Date Opened</th>
+                <th>Min Salary</th>
+                <th>Max Salary</th>
+                <th>Options</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><%= rec.jobOffer.companyName %></td>
+                <td><%= rec.jobOffer.position %></td>
+                <td><%= rec.jobOffer.location %></td>
+                <td><%= rec.jobOffer.minSalary %></td>
+                <td><%= rec.jobOffer.maxSalary %></td>
+                <td>
+                    <ul class="list-actions">
+                        <li>
+                            <a href="/job-offers/details/<%= rec.jobOffer._id %>"
+                               class="list-actions-button-details">Details</a>
+                        </li>
+                        <li>
+                            <a href="/job-offers/delete/<%= rec.jobOffer._id %>" class="list-actions-button-delete"
+                               onclick="return confirm('Are you sure?')">Delete</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+
+            </tbody>
+        </table>
+    <% } %>
 </main>
 <%- include('../../fragments/footer.ejs') %>

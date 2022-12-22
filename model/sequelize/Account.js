@@ -95,6 +95,7 @@ const Account = sequelize.define('Account', {
     creationDate: {
         type: Sequelize.DATE,
         validate: {
+            isDate: true,
             isPastDate(value) {
                 if (value >= new Date()) {
                     throw new Error('Start date must be in the past');

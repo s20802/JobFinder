@@ -237,34 +237,70 @@ exports.addRecruitment = (req, res, next) => {
     });
 };
 
+// exports.updateRecruitment = (req, res, next) => {
+//     const recId = req.body._id;
+//     const recData = {...req.body};
+//     let allAccs, allJobs;
+//     AccountRepository.getAccounts()
+//         .then(accs => {
+//             allAccs = accs;
+//             return JobOfferRepository.getJobOffers();
+//         }).then(jobs => {
+//         allJobs = jobs;
+//         return RecruitmentRepository.updateRecruitment(recId, recData)
+//             .then(result => {
+//                 res.redirect('/recruitments');
+//             }).catch(err => {
+//                 res.render('pages/recruitment/form', {
+//                     rec: recData,
+//                     pageTitle: 'Edit recruitment',
+//                     formMode: 'edit',
+//                     btnLabel: 'Add',
+//                     formAction: '/recruitments/edit',
+//                     navLocation: 'rec',
+//                     buttonCSS: 'edit',
+//                     allAccs: allAccs,
+//                     allJobs: allJobs,
+//                     validationErrors: err.errors
+//                 });
+//             });
+//     });
+// };
+
 exports.updateRecruitment = (req, res, next) => {
     const recId = req.body._id;
-    const recData = {...req.body};
-    let allAccs, allJobs;
-    AccountRepository.getAccounts()
-        .then(accs => {
+    const recData = { ...req.body };
+    let rec, allAccs, allJobs;
+
+    RecruitmentRepository.getRecruitmentById(recId)
+        .then((recruitment) => {
+            rec = recruitment;
+            return AccountRepository.getAccounts();
+        })
+        .then((accs) => {
             allAccs = accs;
             return JobOfferRepository.getJobOffers();
-        }).then(jobs => {
-        allJobs = jobs;
-        return RecruitmentRepository.updateRecruitment(recId, recData)
-            .then(result => {
-                res.redirect('/recruitments');
-            }).catch(err => {
-                res.render('pages/recruitment/form', {
-                    rec: recData,
-                    pageTitle: 'Edit recruitment',
-                    formMode: 'edit',
-                    btnLabel: 'Add',
-                    formAction: '/recruitments/edit',
-                    navLocation: 'rec',
-                    buttonCSS: 'edit',
-                    allAccs: allAccs,
-                    allJobs: allJobs,
-                    validationErrors: err.errors
-                });
+        })
+        .then((jobs) => {
+            allJobs = jobs;
+            return RecruitmentRepository.updateRecruitment(recId, recData);
+        })
+        .then((result) => {
+            res.redirect("/recruitments");
+        })
+        .catch((err) => {
+            res.render("pages/recruitment/form", {
+                rec: rec,
+                allAccs: allAccs,
+                allJobs: allJobs,
+                formMode: "edit",
+                pageTitle: "Edit recruitment",
+                btnLabel: "Edit",
+                formAction: "/recruitments/edit",
+                navLocation: "rec",
+                validationErrors: err.errors
             });
-    });
+        });
 };
 
 exports.deleteRecruitment = (req, res, next) => {

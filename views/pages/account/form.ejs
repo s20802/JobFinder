@@ -70,7 +70,7 @@
 
       <label for="creationDate">Date Created: <span class="symbol-required">*</span></label>
       <input class="<%= validationErrors.find(e => e.path.includes('creationDate')) ? 'error-input' : '' %>"
-             type="date" name="creationDate" id="creationDate" value="<%= acc.creationDate ? acc.creationDate : new Date().toISOString().split('T')[0] %>"
+             type="date" name="creationDate" id="creationDate" value="<%= acc.creationDate ? new Date(acc.creationDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0] %>"
               <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
       <span id="errorCreationDate" class="errors-text">
           <% if(validationErrors.find(e => e.path.includes('creationDate'))){ %>
@@ -114,20 +114,20 @@
             </tr>
             </thead>
             <tbody>
-            <% for (let a of acc.recruitments) { %>
+            <% for (let recruitment of acc.recruitments) { %>
                 <tr>
-                    <td><%= a.jobOffer.companyName%></td>
-                    <td><%= a.status %> </td>
-                    <td><%= a.dateOpened.toISOString().split('T')[0] %></td>
-                    <td><%= a.notes %></td>
+                    <td><%= recruitment.jobOffer.companyName%></td>
+                    <td><%= recruitment.status %> </td>
+                    <td><%= recruitment.dateOpened.toISOString().split('T')[0] %></td>
+                    <td><%= recruitment.notes %></td>
                     <td>
                         <ul class="list-actions">
                             <li>
-                                <a href="/recruitments/details/<%= a._id %>"
+                                <a href="/recruitments/details/<%= recruitment._id %>"
                                    class="list-actions-button-details">Details</a>
                             </li>
                             <li>
-                                <a href="/recruitments/delete/<%= a._id %>" class="list-actions-button-delete"
+                                <a href="/recruitments/delete/<%= recruitment._id %>" class="list-actions-button-delete"
                                    onclick="return confirm('Are you sure?')">Delete</a>
                             </li>
                         </ul>

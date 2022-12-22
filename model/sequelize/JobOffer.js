@@ -60,25 +60,10 @@ const JobOffer = sequelize.define('JobOffer', {
     minSalary: {
         type: Sequelize.INTEGER,
         allowNull: true,
-        validate: {
-            isInt: {
-                msg: "Field should contain a number!"
-            },
-        },
     },
     maxSalary: {
         type: Sequelize.INTEGER,
         allowNull: true,
-        validate: {
-            isInt: {
-                msg: "Field should contain a number!"
-            },
-            isLargerThanMin(value) {
-                if(value <= this.minSalary) {
-                    throw new Error('Max salary should not be lower than min salary!')
-                }
-            }
-        },
     }
 });
 

@@ -79,8 +79,10 @@ exports.addJobOffer = (req, res, next) => {
 exports.updateJobOffer = (req, res, next) => {
 
     const jobId = req.body._id;
-    const jobData = { ...req.body};
-    JobOfferRepository.updateJobOffer(jobId, jobData)
+    const jobData = {...req.body};
+    let job;
+
+    JobOfferRepository.getJobOfferById(jobId, jobData)
         .then(result => {
             res.redirect('/job-offers');
         }).catch(err => {
@@ -95,6 +97,32 @@ exports.updateJobOffer = (req, res, next) => {
             validationErrors: err.errors
         });
     });
+};
+
+exports.updateJobOffer = (req, res, next) => {
+    const jobId = req.body._id;
+    const jobData = {...req.body};
+    let job;
+    JobOfferRepository.getJobOfferById(jobId)
+        .then((jobOffer) => {
+            job = jobOffer;
+            return JobOfferRepository.updateJobOffer(jobId, jobData);
+        })
+        .then((result) => {
+            res.redirect('/job-offers');
+        })
+        .catch((err) => {
+            res.render('pages/job_offers/form', {
+                job: job,
+                formMode: 'edit',
+                pageTitle: 'Edit job offer',
+                btnLabel: 'Edit',
+                formAction: '/job-offers/edit',
+                navLocation: 'job',
+                buttonCSS: 'edit',
+                validationErrors: err.errors
+            });
+        });
 };
 
 exports.deleteJobOffer = (req, res, next) => {
