@@ -1,9 +1,11 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-<script type="application/javascript" src="/js/validationAccountForm.js"></script>
+    <script type="application/javascript" src="/js/validationCommon.js"></script>
+    <script type="application/javascript" src="/js/validationAccountForm.js"></script>
 
 <h2><%= pageTitle %></h2>
-  <form class="form" method="post" action="<%=formAction%>" novalidate>
+
+  <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
 
       <input type="hidden" name="_id" value="<%= acc._id %>">
 

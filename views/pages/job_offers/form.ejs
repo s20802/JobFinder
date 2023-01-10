@@ -1,9 +1,10 @@
 <%- include('../../fragments/header.ejs') %>
+
 <main>
-  <script type=application/javascript" src="public/js/validationCommon.js"></script>
-  <script type=application/javascript" src="public/js/validationJobOfferForm.js"></script>
+  <script type="application/javascript" src="/js/validationCommon.js"></script>
+  <script type="application/javascript" src="/js/validationJobOfferForm.js"></script>
   <h2><%= pageTitle %></h2>
-  <form class="form" method="post" action="<%=formAction%>">
+  <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
 
     <input type="hidden" name="_id" value="<%= job._id %>">
 

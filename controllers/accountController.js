@@ -87,6 +87,7 @@ exports.updateAccount = (req, res, next) => {
     AccountRepository.getAccountById(accId)
         .then((account) => {
             acc = account;
+            accData.recruitments = acc.recruitments;
             return AccountRepository.updateAccount(accId, accData);
         })
         .then((result) => {
@@ -102,7 +103,7 @@ exports.updateAccount = (req, res, next) => {
             }
         })
         res.render('pages/account/form', {
-            acc: acc,
+            acc: accData,
             formMode: 'edit',
             pageTitle: 'Edit account',
             btnLabel: 'Edit',

@@ -59,7 +59,7 @@
 
         <label for="dateOpened">Date Opened: <span class="symbol-required">*</span></label>
         <input class="<%= validationErrors.find(e => e.path.includes('dateOpened')) ? 'error-input' : '' %>"
-               type="date" name="dateOpened" id="dateOpened" value="<%= rec.dateOpened ? rec.dateOpened.toISOString().split('T')[0] : new Date().toISOString().split('T')[0] %>"
+               type="date" name="dateOpened" id="dateOpened" value="<%= rec.dateOpened ? new Date(rec.dateOpened).toISOString().split('T')[0] : new Date().toISOString().split('T')[0] %>"
                 <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
         <span id="errorDateOpened" class="errors-text">
             <% if(validationErrors.find(e => e.path.includes('dateOpened'))){ %>
