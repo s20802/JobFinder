@@ -1,18 +1,15 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
-    <script type="application/javascript" src="/js/validationCommon.js"></script>
-    <script type="application/javascript" src="/js/validationAccountForm.js"></script>
-
 <h2><%= pageTitle %></h2>
 
-  <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
+  <form class="form"  action="<%=formAction%>"novalidate onsubmit="return validateForm()" method="post">
 
       <input type="hidden" name="_id" value="<%= acc._id %>">
 
       <label for="username">Username: <span class="symbol-required">*</span></label>
       <input class="<%= validationErrors.find(e => e.path.includes('username')) ? 'error-input' : '' %>"
              type="text" name="username" id="username" placeholder="2-60 characters" value="<%= acc.username %>"
-             <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
+             <%= (formMode === 'showDetails') ? 'disabled' : '' %> required/>
       <span id="errorUsername" class="errors-text">
           <% if(validationErrors.find(e => e.path.includes('username'))){ %>
               <%= validationErrors.find(e => e.path.includes('username')).message %>
@@ -22,7 +19,7 @@
       <label for="name">Name: <span class="symbol-required">*</span></label>
       <input class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>"
              type="text" name="name" id="name" placeholder="8-14 characters" value="<%= acc.name %>"
-            <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
+            <%= (formMode === 'showDetails') ? 'disabled' : '' %> required/>
       <span id="errorName" class="errors-text">
           <% if(validationErrors.find(e => e.path.includes('name'))){ %>
               <%= validationErrors.find(e => e.path.includes('name')).message %>
@@ -32,7 +29,7 @@
       <label for="surname">Surname: <span class="symbol-required">*</span></label>
       <input class="<%= validationErrors.find(e => e.path.includes('surname')) ? 'error-input' : '' %>"
              type="text" name="surname" id="surname" placeholder="2-60 characters" value="<%= acc.surname %>"
-            <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
+            <%= (formMode === 'showDetails') ? 'disabled' : '' %> required/>
       <span id="errorSurname" class="errors-text">
           <% if(validationErrors.find(e => e.path.includes('surname'))){ %>
               <%= validationErrors.find(e => e.path.includes('surname')).message %>
@@ -41,7 +38,7 @@
       <label for="gender">Gender: <span class="symbol-required">*</span></label>
       <input class="<%= validationErrors.find(e => e.path.includes('gender')) ? 'error-input' : '' %>"
              type="text" name="gender" id="gender" placeholder="2-60 characters" value="<%= acc.gender%>"
-            <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
+            <%= (formMode === 'showDetails') ? 'disabled' : '' %> required/>
       <span id="errorGender" class="errors-text">
           <% if(validationErrors.find(e => e.path.includes('gender'))){ %>
               <%= validationErrors.find(e => e.path.includes('gender')).message %>
@@ -53,7 +50,7 @@
       <label for="password">Password: <span class="symbol-required">*</span></label>
       <input class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>"
              type="text" name="password" id="password" placeholder="2-10 characters" value="<%= acc.password %>"
-            <%= (formMode === 'showDetails') ? 'disabled' : '' %>/>
+            <%= (formMode === 'showDetails') ? 'disabled' : '' %> required/>
       <span id="errorPassword" class="errors-text">
           <% if(validationErrors.find(e => e.path.includes('password'))){ %>
               <%= validationErrors.find(e => e.path.includes('password')).message %>
@@ -63,7 +60,7 @@
       <label for="email">E-mail: <span class="symbol-required">*</span></label>
       <input class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>"
              type="email" name="email" id="email" placeholder="ex. name@domain.com" value="<%= acc.email%>"
-            <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
+            <%= (formMode === 'showDetails') ? 'disabled' : ''%> required/>
       <span id="errorEmail" class="errors-text">
           <% if(validationErrors.find(e => e.path.includes('email'))){ %>
               <%= validationErrors.find(e => e.path.includes('email')).message %>
@@ -73,7 +70,7 @@
       <label for="creationDate">Date Created: <span class="symbol-required">*</span></label>
       <input class="<%= validationErrors.find(e => e.path.includes('creationDate')) ? 'error-input' : '' %>"
              type="date" name="creationDate" id="creationDate" value="<%= acc.creationDate ? new Date(acc.creationDate).toISOString().split('T')[0] : new Date().toISOString().split('T')[0] %>"
-              <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
+              <%= (formMode === 'showDetails') ? 'disabled' : ''%> required/>
       <span id="errorCreationDate" class="errors-text">
           <% if(validationErrors.find(e => e.path.includes('creationDate'))){ %>
               <%= validationErrors.find(e => e.path.includes('creationDate')).message %>

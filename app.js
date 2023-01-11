@@ -13,13 +13,13 @@ const jobApiRouter = require('./routes/api/JobOfferApiRoute');
 const recruitmentApiRouter = require('./routes/api/RecruitmentApiRoute');
 
 const sequelizeInit = require('./config/sequelize/init');
-sequelizeInit()
-    .catch(err => {
-      console.log(err);
-    });
+
 
 var app = express();
-
+sequelizeInit()
+    .catch(err => {
+        console.log(err);
+    });
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
