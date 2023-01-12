@@ -39,8 +39,8 @@ exports.createRecruitment = (data) => {
         status: data.status,
         dateOpened: data.dateOpened,
         notes: data.notes,
-        acc_id: data.acc_id,
-        job_id: data.job_id
+        acc_id: data.acc_id === "" ? null : data.acc_id,
+        job_id: data.job_id === "" ? null : data.job_id
     })
 };
 

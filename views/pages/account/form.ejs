@@ -1,8 +1,10 @@
 <%- include('../../fragments/header.ejs') %>
 <main>
+
+<script type="application/javascript" src="/js/validationAccountForm.js"></script>
 <h2><%= pageTitle %></h2>
 
-  <form class="form"  action="<%=formAction%>"novalidate onsubmit="return validateForm()" method="post">
+  <form class="form" action="<%=formAction%>" novalidate onsubmit="return validateForm()" method="post">
 
       <input type="hidden" name="_id" value="<%= acc._id %>">
 
@@ -18,7 +20,7 @@
 
       <label for="name">Name: <span class="symbol-required">*</span></label>
       <input class="<%= validationErrors.find(e => e.path.includes('name')) ? 'error-input' : '' %>"
-             type="text" name="name" id="name" placeholder="8-14 characters" value="<%= acc.name %>"
+             type="text" name="name" id="name" placeholder="2-60 characters" value="<%= acc.name %>"
             <%= (formMode === 'showDetails') ? 'disabled' : '' %> required/>
       <span id="errorName" class="errors-text">
           <% if(validationErrors.find(e => e.path.includes('name'))){ %>
@@ -49,7 +51,7 @@
 
       <label for="password">Password: <span class="symbol-required">*</span></label>
       <input class="<%= validationErrors.find(e => e.path.includes('password')) ? 'error-input' : '' %>"
-             type="text" name="password" id="password" placeholder="2-10 characters" value="<%= acc.password %>"
+             type="text" name="password" id="password" placeholder="8-14 characters" value="<%= acc.password %>"
             <%= (formMode === 'showDetails') ? 'disabled' : '' %> required/>
       <span id="errorPassword" class="errors-text">
           <% if(validationErrors.find(e => e.path.includes('password'))){ %>
@@ -82,13 +84,13 @@
           </div>
       <% } %>
 
+      <p class="errors-text" id="errorsSummary"></p>
       <% if (formMode === 'showDetails') { %>
           <div class="form-buttons">
               <a href="/accounts/edit/<%= acc._id %> " class="button-edit">Edit</a>
           </div>
       <% } %>
       <div class="form-buttons">
-          <span class="errors-text" id="errorsSummary"></span>
           <% if (formMode !== 'showDetails') { %>
               <input class="form-button-submit" type="submit" value="<%= btnLabel %>"/>
               <a class="form-button-cancel" href="/accounts">Cancel</a>

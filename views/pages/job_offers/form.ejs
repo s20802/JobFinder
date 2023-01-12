@@ -4,13 +4,13 @@
   <script type="application/javascript" src="/js/validationCommon.js"></script>
   <script type="application/javascript" src="/js/validationJobOfferForm.js"></script>
   <h2><%= pageTitle %></h2>
-  <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm()">
+  <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
 
     <input type="hidden" name="_id" value="<%= job._id %>">
 
     <label for="companyName">Company name: <span class="symbol-required">*</span></label>
     <input class="<%= validationErrors.find(e => e.path.includes('companyName')) ? 'error-input' : '' %>"
-           type="text" name="companyName" id="companyName" placeholder="2-20 characters" value="<%= job.companyName %>"
+           type="text" name="companyName" id="companyName" placeholder="2-60 characters" value="<%= job.companyName %>"
           <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
     <span id="errorCompanyName" class="errors-text">
       <% if(validationErrors.find(e => e.path.includes('companyName'))){ %>
@@ -20,7 +20,7 @@
 
     <label for="position">Position: <span class="symbol-required">*</span></label>
     <input class="<%= validationErrors.find(e => e.path.includes('position')) ? 'error-input' : '' %>"
-           type="text" name="position" id="position" value="<%= job.position %>"
+           type="text" name="position" id="position" placeholder="2-60 characters" value="<%= job.position %>"
             <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
     <span id="errorPosition" class="errors-text">
       <% if(validationErrors.find(e => e.path.includes('position'))){ %>
@@ -30,7 +30,7 @@
 
     <label for="location">Location: <span class="symbol-required">*</span></label>
     <input class="<%= validationErrors.find(e => e.path.includes('location')) ? 'error-input' : '' %>"
-           type="text" name="location" id="location" value="<%= job.location %>"
+           type="text" name="location" id="location" placeholder="2-60 characters" value="<%= job.location %>"
             <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
     <span id="errorLocation" class="errors-text">
       <% if(validationErrors.find(e => e.path.includes('location'))){ %>
@@ -40,7 +40,7 @@
 
     <label for="minSalary">Minimum salary (PLN):</label>
     <input class="<%= validationErrors.find(e => e.path.includes('minSalary')) ? 'error-input' : '' %>"
-           type="number" name="minSalary" id="minSalary" value="<%= job.minSalary ? job.minSalary : 0 %>"
+           type="number" name="minSalary" id="minSalary"  value="<%= job.minSalary ? job.minSalary : 0 %>"
             <%= (formMode === 'showDetails') ? 'disabled' : ''%>/>
     <span id="errorMinSalary" class="errors-text">
       <% if(validationErrors.find(e => e.path.includes('minSalary'))){ %>

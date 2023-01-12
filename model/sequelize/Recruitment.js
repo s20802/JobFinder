@@ -39,6 +39,14 @@ const Recruitment = sequelize.define('Recruitment', {
                 msg: "Field should contain a maximum of 255 characters!"
             }
         },
+    },
+    acc_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    job_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
     }
 });
 

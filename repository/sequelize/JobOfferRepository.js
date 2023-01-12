@@ -36,8 +36,8 @@ exports.updateJobOffer = (jobId, jobData) => {
     const position = jobData.position;
     const description = jobData.description;
     const location = jobData.location;
-    const minSalary = jobData.minSalary;
-    const maxSalary = jobData.maxSalary;
+    const minSalary = jobData.minSalary === "" ? null : jobData.minSalary;
+    const maxSalary = jobData.maxSalary === "" ? null : jobData.maxSalary;
     return JobOffer.update(jobData, {where: {_id: jobId }});
 };
 

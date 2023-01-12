@@ -13,7 +13,11 @@ function validateForm() {
     const errorStatus = document.getElementById('errorStatus');
     const errorDateOpened = document.getElementById('errorDateOpened');
     const errorNotes = document.getElementById('errorNotes');
-    const errorsSummary = document.getElementById('errorSummary');
+    let errorsSummary = document.getElementById('errorSummary');
+
+    if (errorsSummary === null) {
+        errorsSummary = "";
+    }
 
     resetErrors([recUsernameInput, companyRecNameInput, statusInput, dateOpenedInput, notesInput],
         [errorRecUsername, errorCompanyRecName, errorStatus, errorStatus, errorDateOpened, errorNotes], errorsSummary)
@@ -23,21 +27,32 @@ function validateForm() {
     if(!checkRequired(recUsernameInput.value)) {
         valid = false;
         recUsernameInput.classList.add("error-input");
-        errorRecUsername.innerText = "Field required";
+        errorRecUsername.innerText = "Field required!";
     } if(recUsernameInput.value === "0") {
         valid = false;
         recUsernameInput.classList.add("error-input");
-        errorRecUsername.innerText = "Field required";
+        errorRecUsername.innerText = "Field required!";
     }
 
     if(!checkRequired(companyRecNameInput.value)) {
         valid = false;
         companyRecNameInput.classList.add("error-input");
-        errorCompanyRecName.innerText = "Field required";
+        errorCompanyRecName.innerText = "Field required!";
     } else if(companyRecNameInput.value === "0") {
         valid = false;
         companyRecNameInput.classList.add("error-input");
-        errorCompanyRecName.innerText = "Field required";
+        errorCompanyRecName.innerText = "Field required!";
+    }
+
+    if(!checkRequired(statusInput.value)) {
+        valid = false;
+        statusInput.classList.add("error-input");
+        errorStatus.innerText = "Field required!";
+    }
+    else if (!checkTextLengthRange(statusInput.value, 2, 60)) {
+        valid = false;
+        statusInput.classList.add("error-input");
+        errorStatus.innerText = "Field should have 2 to 60 characters";
     }
 
     let nowDate = new Date(),
@@ -54,15 +69,15 @@ function validateForm() {
     if(!checkRequired(dateOpenedInput.value)) {
         valid = false;
         dateOpenedInput.classList.add("error-input");
-        errorDateOpened.innerText = "Field required"
+        errorDateOpened.innerText = "Field required!"
     } else if (!checkDate(dateOpenedInput.value)) {
         valid = false;
         dateOpenedInput.classList.add("error-input");
-        errorDateOpened.innerText = "Input should be a date in correct format (yyyy-mm-dd)"
+        errorDateOpened.innerText = "Input should be a date in correct format (yyyy-mm-dd)!"
     } else if (checkDateIfAfter(dateOpenedInput.value, nowString)) {
         valid = false;
         dateOpenedInput.classList.add("error-input");
-        errorDateOpened.innerText = "Date cannot be in the future";
+        errorDateOpened.innerText = "Date cannot be in the future!";
     }
 
     if(!valid) {

@@ -106,6 +106,7 @@ exports.updateJobOffer = (req, res, next) => {
     JobOfferRepository.getJobOfferById(jobId)
         .then((jobOffer) => {
             job = jobOffer;
+            jobData.recruitments = job.recruitments;
             return JobOfferRepository.updateJobOffer(jobId, jobData);
         })
         .then((result) => {
@@ -113,7 +114,7 @@ exports.updateJobOffer = (req, res, next) => {
         })
         .catch((err) => {
             res.render('pages/job_offers/form', {
-                job: job,
+                job: jobData,
                 formMode: 'edit',
                 pageTitle: 'Edit job offer',
                 btnLabel: 'Edit',

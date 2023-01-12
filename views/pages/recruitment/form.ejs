@@ -5,7 +5,7 @@
     <script type="application/javascript" src="/js/validationCommon.js"></script>
     <script type="application/javascript" src="/js/validationRecruitmentForm.js"></script>
     <h2><%= pageTitle %></h2>
-    <form class="form" method="post" action="<%= formAction%> " novalidate onsubmit="return validateForm();">
+    <form class="form" method="post" action="<%= formAction%>" novalidate onsubmit="return validateForm();">
 
         <input type="hidden" name="_id" value="<%= rec._id %>"/>
 
@@ -18,7 +18,7 @@
             <% } %>
             <% for (let i = 0; i < allAccs.length; i++) { let acc = allAccs[i]; %>
             <option value="<%= acc._id %>" label="<%= acc.username%>"
-            <%= (rec._id && acc._id.toString() === rec.account._id.toString()) ? 'selected' : '' %>>
+            <%= (acc._id == rec.acc_id) ? 'selected' : '' %>>
             </option>
             <% } %>
         </select>
@@ -37,7 +37,7 @@
             <% } %>
             <% for (let i = 0; i < allJobs.length; i++) { let job = allJobs[i]; %>
             <option value="<%= job._id %>" label="<%= job.companyName + ' (' + job.position + ')'%>"
-                <%= (rec._id && job._id.toString() === rec.jobOffer._id.toString()) ? 'selected' : '' %>>
+                <%= (job._id == rec.job_id) ? 'selected' : '' %>>
             </option>
             <% } %>
         </select>
@@ -143,7 +143,6 @@
                 <th>Company Name</th>
                 <th>Position</th>
                 <th>Location</th>
-                <th>Date Opened</th>
                 <th>Min Salary</th>
                 <th>Max Salary</th>
                 <th>Options</th>
